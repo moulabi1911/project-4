@@ -1,0 +1,50 @@
+#Autoscaling in Kubernetes
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: utility-api
+spec:
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 70
+          type: Utilization
+      type: Resource
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: utility-api
+
+
+#loadbalancing in Kubernetes
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fe
+  labels:
+    app: swiggy
+spec:
+  containers:
+  - name: cont1
+    image: nginx
+    ports:
+      - containerPort: 80
+
+vim svc.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fe
+spec:
+  type: LoadBalancer
+  selector:
+    app: swiggy
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30001
