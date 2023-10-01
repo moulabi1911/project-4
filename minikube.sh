@@ -1,3 +1,7 @@
+#STEP-1:
+#Installation and setup of Kubernetes cluster
+
+
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install curl wget apt-transport-https -y
