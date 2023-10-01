@@ -1,3 +1,5 @@
+ #Installation and setup of Kubernetes cluster [EKS]
+
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install curl wget apt-transport-https -y
@@ -12,3 +14,8 @@ sudo curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.t
 sudo echo "$(cat kubectl.sha256) kubectl" | sha256sum --check
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 sudo minikube start --driver=docker --force
+eksctl create cluster --name demo-cluster --region us-east-1 --fargate
+
+
+#delete the cluster 
+eksctl delete cluster --name demo-cluster --region us-east-1
