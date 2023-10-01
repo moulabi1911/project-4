@@ -1,5 +1,5 @@
 #STEP-1:
-#Installation and setup of Kubernetes cluster
+#Installation and setup of Kubernetes cluster.
 
 
 sudo apt update -y
